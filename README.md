@@ -1,4 +1,4 @@
-# NeMo ASR to LiteRT Direct Conversion
+# NeMo ASR to LiteRT (formerly TFLite) Direct Conversion
 
 This repository demonstrates how to directly convert NeMo ASR models to LiteRT (formerly TFLite) int8 quantized models without using ONNX as an intermediate step.
 
