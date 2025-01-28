@@ -36,13 +36,14 @@ class ExportFormat(Enum):
     """Which format to use when exporting a Neural Module for deployment"""
 
     ONNX = 1
-    TORCHSCRIPT = 2
-
+    TORCHSCRIPT = 2,
+    TFLITE = 3
 
 _EXT_DICT = {
     ".pt": ExportFormat.TORCHSCRIPT,
     ".ts": ExportFormat.TORCHSCRIPT,
     ".onnx": ExportFormat.ONNX,
+    ".tflite": ExportFormat.TFLITE
 }
 
 

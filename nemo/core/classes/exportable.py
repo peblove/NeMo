@@ -277,6 +277,26 @@ class Exportable(ABC):
 
                     if check_trace:
                         verify_runtime(self, output, check_trace_input, input_names, check_tolerance=check_tolerance)
+                elif format == ExportFormat.TFLITE:
+                    import ai_edge_torch
+                    import tensorflow as tf
+
+                    # Pass TfLite Converter quantization flags to _ai_edge_converter_flags parameter.
+                    tfl_converter_flags = {'optimizations': [tf.lite.Optimize.DEFAULT]}
+
+                    # dynamic axis is a mapping from input/output_name => list of "dynamic" indices
+                    if dynamic_axes is None:
+                        dynamic_axes = self.dynamic_shapes_for_export(use_dynamo)
+                    typecheck.enable_wrapping(enabled=False)
+                    # https://github.com/pytorch/pytorch/issues/126339
+                    with monkeypatched(torch.nn.RNNBase, "flatten_parameters", lambda *args: None):
+                        logging.info(f"Running export.export, dynamic shapes:{dynamic_axes}\n")
+
+                        edge_model = ai_edge_torch.convert(self,
+                                tuple(input_list),
+                                _ai_edge_converter_flags=tfl_converter_flags
+                                )
+                        edge_model.export(output)
                 else:
                     raise ValueError(f'Encountered unknown export format {format}.')
         finally:
