@@ -1,6 +1,6 @@
-# NeMo (PyTorch TorchScript) ASR models to LiteRT (formerly TFLite) Direct Conversion
+# NeMo (PyTorch TorchScript) models to LiteRT (formerly TFLite) Direct Conversion
 
-This repository demonstrates how to directly convert NeMo ASR models to LiteRT (formerly TFLite) int8 quantized models without using ONNX as an intermediate step.
+This repository demonstrates how to directly convert NeMo models to LiteRT (formerly TFLite) int8 quantized models without using ONNX as an intermediate step.
 
 ## Environment Prerequisites
 
@@ -44,5 +44,5 @@ python nemo2litert.py
 ## Technical Notes
 
 - The conversion process bypasses ONNX intermediates for more efficient transformation
-- Supports various NeMo ASR model architectures
+- Supports various NeMo model architectures
 - Maintains model performance while reducing size through int8 quantization
