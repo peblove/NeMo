@@ -294,6 +294,7 @@ class Exportable(ABC):
 
                         edge_model = ai_edge_torch.convert(self,
                                 tuple(input_list),
+                                dynamic_shapes=dynamic_axes,
                                 _ai_edge_converter_flags=tfl_converter_flags
                                 )
                         edge_model.export(output)
