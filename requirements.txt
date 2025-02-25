@@ -4,4 +4,4 @@ nemo_toolkit[asr]
 torch==2.5.1
 torch_xla==2.5.1
 https://storage.googleapis.com/pytorch-xla-releases/wheels/cuda/12.4/torch_xla_cuda_plugin-2.5.1-py3-none-any.whl
-ai_edge_torch
+ai_edge_torch==0.2.1
